@@ -1,37 +1,16 @@
 const express = require("express");
 const searchService = require("./search.service");
 
+// The search controller holds all end-points used for Requests
+
 const router = express.Router();
 
+// GET
 router.get("/", async (req, res) => {
-  const { term = "", limit = 25, media = "all" } = req.query;
+  const { term = "", limit = 1, media = "all" } = req.query;
   const uri = `?term=${term}&media=${media}&limit=${limit}`;
   const data = await searchService.searchTerm(uri);
   res.json(data);
-});
-
-router.post("/", async (req, res) => {
-  try {
-    res.json(req.body);
-  } catch (error) {
-    console.log("Could not post request");
-  }
-});
-
-router.put("/update/:id", async (req, res) => {
-  try {
-    res.json({});
-  } catch (error) {
-    console.log("Could not update");
-  }
-});
-
-router.delete("/delete/:id", async (req, res) => {
-  try {
-    res.json({});
-  } catch (error) {
-    console.log("Could not delete");
-  }
 });
 
 module.exports = router;

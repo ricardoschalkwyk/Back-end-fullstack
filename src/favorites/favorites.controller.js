@@ -4,14 +4,18 @@ const favoritesService = require("./favorites.service");
 
 const router = express.Router();
 
+// The favorites controller holds all requests made to each end-point
+
+// GET
 router.get("/", (req, res) => {
   const data = favoritesService.findAll();
 
   res.json(data);
 });
 
+// GET
 router.get("/:id", (req, res) => {
-  const data = favoritesService.findOne(Number(req.params.id));
+  const data = favoritesService.findOne(req.params.id);
 
   // error
   if (!data) {
@@ -23,6 +27,7 @@ router.get("/:id", (req, res) => {
   res.json(data);
 });
 
+// POST
 router.post("/", (req, res) => {
   const data = favoritesService.create(req.body);
 
@@ -36,21 +41,9 @@ router.post("/", (req, res) => {
   res.json(data);
 });
 
-router.put("/update/:id", (req, res) => {
-  const data = favoritesService.update(Number(req.params.id), req.body);
-
-  // error
-  if (!data) {
-    res.status(400).json({
-      message: "Could not update",
-    });
-  }
-
-  res.json(data);
-});
-
+// DELETE
 router.delete("/delete/:id", (req, res) => {
-  const data = favoritesService.remove(Number(req.params.id));
+  const data = favoritesService.remove(req.params.id);
 
   // error
   if (!data) {

@@ -1,5 +1,6 @@
 const fetch = require("node-fetch");
 
+// Request to the itunes API
 const BASE_URL = "https://itunes.apple.com/search";
 
 async function searchTerm(url = "/") {

@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`/favorites GET should return faorites 1`] = `Array []`;
+
+exports[`/favorites GET should return favorites 1`] = `Array []`;
